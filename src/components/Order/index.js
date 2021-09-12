@@ -1,9 +1,9 @@
 import React from 'react';
-
-export default function index() {
+import OrderForm from './OrderForm'
+export default function Order() {
     return(
         <div>
-            
+<OrderForm></OrderForm>
         </div>
-    )
+    );
 }
