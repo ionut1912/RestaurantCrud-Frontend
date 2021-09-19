@@ -1,10 +1,12 @@
 import { Grid, InputAdornment,makeStyles ,ButtonGroup,Button as MuiButton} from '@material-ui/core';
 import React ,{useState} from 'react';
 import Form  from   "../../layouts/Form"
+
 import {Input,Select,Button} from "../../controls/"
 
 import ReplayIcon from '@mui/icons-material/Replay';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+
 export default function OrderForm(props){
 const{values,errors,handleInputChange}=props;
     const pMethods =[
@@ -22,6 +24,9 @@ const{values,errors,handleInputChange}=props;
         }
 }));
 const classes=useStyles();
+
+
+
     return(
 <Form>
 
@@ -38,6 +43,15 @@ const classes=useStyles();
 <Grid item xs={6}>
 <Select  label="Payment" name="pMethod" options={pMethods}  value={values.pMethod} onChange={handleInputChange}></Select>
     </Grid>
+<Input disabled label="OrderNumber" name="orderNumber">
+
+</Input>
+</Grid>
+    <Grid item xs={6}>
+        <Input disabled label="Grand Total" name="gTotal">
+
+        </Input>
+
 </Grid>
 <br/>
 
@@ -79,3 +93,4 @@ const classes=useStyles();
 </Form>
 );
 }
+
