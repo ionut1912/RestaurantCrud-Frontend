@@ -1,12 +1,11 @@
 import { Grid, InputAdornment,makeStyles ,ButtonGroup,Button as MuiButton} from '@material-ui/core';
 import React ,{useState} from 'react';
 import Form  from   "../../layouts/Form"
-
 import {Input,Select,Button} from "../../controls/"
 
 import ReplayIcon from '@mui/icons-material/Replay';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-
+import ReorderIcon from '@mui/icons-material/Reorder';
 export default function OrderForm(props){
 const{values,errors,handleInputChange}=props;
     const pMethods =[
@@ -20,6 +19,17 @@ const{values,errors,handleInputChange}=props;
                 color:'#f3b33d',
                 fontWeight:'bolder',
                 fontSize:'1.5em'
+            }
+        },
+        submitButtonGroup:{
+            backgroundColor:'#f3b33d',
+            color:'#000',
+            margin:theme.spacing(1),
+            '&.MuiButton-label':{
+                textTransform: 'none'
+            },
+            '&.hover':{
+                backgroundColor:'#f3b33d',
             }
         }
 }));
@@ -43,16 +53,10 @@ const classes=useStyles();
 <Grid item xs={6}>
 <Select  label="Payment" name="pMethod" options={pMethods}  value={values.pMethod} onChange={handleInputChange}></Select>
     </Grid>
-<Input disabled label="OrderNumber" name="orderNumber">
 
-</Input>
-</Grid>
-    <Grid item xs={6}>
-        <Input disabled label="Grand Total" name="gTotal">
-
-        </Input>
 
 </Grid>
+
 <br/>
 
 
@@ -76,7 +80,9 @@ const classes=useStyles();
   <InputAdornment className={classes.adormentText} position="start">
    $</InputAdornment>
   ) }} ></Input>
-  <ButtonGroup>
+  <br/>
+  
+  <ButtonGroup className={classes.submitButtonGroup} >
       <MuiButton size="large" type="submit" endIcon={<RestaurantMenuIcon/>}>
           Submit
       </MuiButton>
@@ -84,11 +90,9 @@ const classes=useStyles();
           
       </MuiButton>
   </ButtonGroup>
+  <Button size="large" startIcon={<ReorderIcon/>} >Orders</Button>
     </Grid>
 </Grid>
-
-
-
 
 </Form>
 );
