@@ -7,7 +7,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ReorderIcon from '@mui/icons-material/Reorder';
 export default function OrderForm(props){ 
-const{values,errors,handleInputChange}=props;
+const{values,errors,handleInputChange,setValues}=props;
 
     const pMethods =[
         {id:'none',title:'Select'},
@@ -26,6 +26,15 @@ createApiEndpoint( ENDPOINTS.CUSTOMER).fetchAll().then(res=>
     setCustomerList(customerList);
      }).catch(err=>console.log(err))
     },[]);
+    useEffect(()=>{
+        let gTotal=values.orderDetails.reduce((tempTotal,item)=>{
+            return tempTotal+(item.quantity*item.foodItemPrice);
+        },0);
+        setValues({
+            ...values,
+            gTotal:gTotal})
+    },[JSON.stringify(values.orderDetails)]);
+    
     const useStyles=makeStyles(theme=>({
         adoCrmentText:{
             '& .MuiTypography-root':{
