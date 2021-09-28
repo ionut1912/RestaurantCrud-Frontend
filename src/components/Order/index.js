@@ -28,7 +28,7 @@ export default function Order() {
     return(
      <Grid container>
          <Grid item xs={12}>
-         <OrderForm {...{values,errors,handleInputChange,setValues}}></OrderForm> 
+         <OrderForm {...{values,errors,handleInputChange,setErrors,setValues,resetFormControls}}></OrderForm> 
         
          </Grid>
          <Grid item xs ={6}>

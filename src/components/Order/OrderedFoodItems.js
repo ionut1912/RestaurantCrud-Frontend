@@ -52,11 +52,26 @@ const updateQuantity=(idx,value) => {
 const removeFoodItem=(index,id)=>{
     let x={...values};
     x.orderDetails=x.orderDetails.filter((_,i)=> i!==index);
+    if(id!=0)
+    {
+        x.deletedOrderItemsIds+=id+",";
+    }
     setValues({...x})
 }
     return (
 <List>
-  {  
+  {  orderedFoodItems.length === 0 ?
+  <ListItem>
+      <ListItemText primary="Please select food items" primaryTypographyProps={{
+          style:{
+              textAlign: 'center',
+              fontStyle: 'italic'
+          }
+      }}>
+
+      </ListItemText>
+  </ListItem>
+  :
         orderedFoodItems.map((item,index)=>(
             <Paper key={index} className={classes.paperRoot}>
                 <ListItem>
@@ -86,7 +101,7 @@ const removeFoodItem=(index,id)=>{
                     }
                     ></ListItemText>
                     <ListItemSecondaryAction className={classes.deleteButton}>
-                        <IconButton disableRipple onClick={e=> removeFoodItem(index,item.orderDetailsId)}>
+                        <IconButton disableRipple onClick={e=> removeFoodItem(index,item.orderDetailId)}>
 <DeleteForeverOutlinedIcon>
 
 </DeleteForeverOutlinedIcon>
